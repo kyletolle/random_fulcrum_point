@@ -40,7 +40,7 @@ class RandomFulcrumPoint
       payload_hash =
         {
           form_id:   fulcrum_form_id,
-          latitide:  random_point[0],
+          latitude:  random_point[0],
           longitude: random_point[1],
           status:    random_status,
           form_values: { fulcrum_field_id => Time.now.to_i.to_s }
