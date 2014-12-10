@@ -30,7 +30,7 @@ class RandomFulcrumPoint
         ENV['FULCRUM_FIELD_ID']
       end
 
-      random_point_string = `curl https://random-point-generator.herokuapp.com/random_point?sw_point=40.636883%2C-74.083214&ne_point=40.831476%2C-73.673630`
+      random_point_string = `curl 'https://random-point-generator.herokuapp.com/random_point?sw_point=40.636883%2C-74.083214&ne_point=40.831476%2C-73.673630'`
       puts "##########################"
       puts "RANDOM POINT STRING"
       puts random_point_string
