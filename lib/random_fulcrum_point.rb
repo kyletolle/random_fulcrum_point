@@ -30,7 +30,7 @@ class RandomFulcrumPoint
         ENV['FULCRUM_FIELD_ID']
       end
 
-      random_point_string = `curl https://random-point-generator.herokuapp.com/random_point?sw_point=40.636883%2C-74.083214&ne_point=40.831476%2C-73.673630`
+      random_point_string = `curl 'https://random-point-generator.herokuapp.com/random_point?sw_point=40.636883%2C-74.083214&ne_point=40.831476%2C-73.673630'`
       random_point_string.chop! # remove last `]` character
       random_point_string[0] = '' # remove first `[` character
       random_point = random_point_string.split ', ' # break into lat, long strings
