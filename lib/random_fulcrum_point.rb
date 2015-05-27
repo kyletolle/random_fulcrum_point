@@ -27,11 +27,17 @@ class RandomFulcrumPoint
       'false'
     end
 
+    def fulcrum_api_url
+      Fastenv.fulcrum_api_url
+    rescue
+      'https://api.fulcrumapp.com'
+    end
+
     post '/' do
       def actually_create_record?
         return true if always_create_record == 'true'
 
-        toggle_record_string = `curl -H "Content-Type: application/json" -H "X-ApiToken: #{Fastenv.fulcrum_api_key}"  https://web.fulcrumapp.com/api/v2/records/#{Fastenv.fulcrum_toggle_record_id}.json`
+        toggle_record_string = `curl -H "Content-Type: application/json" -H "X-ApiToken: #{Fastenv.fulcrum_api_key}"  #{fulcrum_api_url}/api/v2/records/#{Fastenv.fulcrum_toggle_record_id}.json`
         toggle_record_hash = JSON.parse(toggle_record_string)
         toggle_value = toggle_record_hash['record']['form_values'][Fastenv.fulcrum_toggle_field_id]
 
@@ -60,7 +66,7 @@ class RandomFulcrumPoint
         }
 
       payload_json = JSON.generate(payload_hash)
-      `curl -H "Content-Type: application/json" -H "X-ApiToken:#{Fastenv.fulcrum_api_key}" -d '#{payload_json}' https://web.fulcrumapp.com/api/v2/records`
+      `curl -H "Content-Type: application/json" -H "X-ApiToken:#{Fastenv.fulcrum_api_key}" -d '#{payload_json}' #{fulcrum_api_url}/api/v2/records`
 
       status 201
     end
