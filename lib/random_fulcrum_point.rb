@@ -18,7 +18,7 @@ class RandomFulcrumPoint
     # Idea from http://www.recursion.org/2011/7/21/modular-sinatra-foreman
     configure do
       set :app_file, __FILE__
-      set :port, ENV['PORT']
+      set :port, Fastenv.port
     end
 
     post '/' do
