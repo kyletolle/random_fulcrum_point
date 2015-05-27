@@ -33,6 +33,20 @@ class RandomFulcrumPoint
       'https://api.fulcrumapp.com'
     end
 
+    def bbox
+      Fastenv.bbox
+    rescue
+      '40.636883,-74.083214,40.831476,-73.673630'
+    end
+
+    def sw_point
+      bbox.split(',').first(2).join('%2C')
+    end
+
+    def ne_point
+      bbox.split(',').last(2).join('%2C')
+    end
+
     post '/' do
       def actually_create_record?
         return true if always_create_record == 'true'
@@ -49,7 +63,7 @@ class RandomFulcrumPoint
         return
       end
 
-      random_point_string = `curl 'https://random-point-generator.herokuapp.com/random_point?sw_point=40.636883%2C-74.083214&ne_point=40.831476%2C-73.673630'`
+      random_point_string = `curl 'https://random-point-generator.herokuapp.com/random_point?sw_point=#{sw_point}&ne_point=#{ne_point}'`
       random_point_string.chop! # remove last `]` character
       random_point_string[0] = '' # remove first `[` character
       random_point = random_point_string.split ', ' # break into lat, long strings
