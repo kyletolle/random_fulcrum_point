@@ -4,12 +4,23 @@
 
 Set the following environment variables
 
+- `FULCRUM_API_URL`
+  - Defaults to `https://api.fulcrumapp.com`, but you can override it to use
+    locally with something like `http://localhost:3000`.
 - `FULCRUM_API_KEY`
   - Your API key for your Fulcrum org, where your form lives.
 - `FULCRUM_FORM_ID`
   - Fulcrum ID of the form you want to create records in.
 - `FULCRUM_FIELD_ID`,
   - The Fulcrum ID of the text field we can put data in.
+- `BBOX`
+  - The bounding box of the area where the random points will be restricted
+    to. Format is `minx,miny,maxx,maxy`.
+- `FULCRUM_ALWAYS_CREATE_RECORD`
+  - Optional. Whether we should always create a record, and not even check the
+    toggle record. If this is `true`, then you don't even need to specify the
+    next two environment variables. Otherwise, it'll use the result from the
+    following record to determine wheter it should create the record.
 - `FULCRUM_TOGGLE_RECORD_ID`
   - Fulcrum ID for the record who has a yes/no field which we can use as a
     toggle for whether we should actually create a random record.
