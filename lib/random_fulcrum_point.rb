@@ -41,7 +41,7 @@ class RandomFulcrumPoint
       random_point = random_point_string.split ', ' # break into lat, long strings
 
       statuses = %W{red yellow green blue}
-      random_status = statuses[rand(statuses.count)]
+      random_status = statuses.sample
       payload_hash =
         {
           form_id:   Fastenv.fulcrum_form_id,
