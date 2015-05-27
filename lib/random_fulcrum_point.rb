@@ -21,8 +21,16 @@ class RandomFulcrumPoint
       set :port, Fastenv.port
     end
 
+    def always_create_record
+      Fastenv.fulcrum_always_create_record
+    rescue
+      'false'
+    end
+
     post '/' do
       def actually_create_record?
+        return true if always_create_record == 'true'
+
         toggle_record_string = `curl -H "Content-Type: application/json" -H "X-ApiToken: #{Fastenv.fulcrum_api_key}"  https://web.fulcrumapp.com/api/v2/records/#{Fastenv.fulcrum_toggle_record_id}.json`
         toggle_record_hash = JSON.parse(toggle_record_string)
         toggle_value = toggle_record_hash['record']['form_values'][Fastenv.fulcrum_toggle_field_id]
