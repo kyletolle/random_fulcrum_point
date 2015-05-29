@@ -1,5 +1,9 @@
 # random_fulcrum_point
 
+## Installing
+
+`bundle install`
+
 ## Setup
 
 Set the following environment variables
