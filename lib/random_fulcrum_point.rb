@@ -22,21 +22,15 @@ class RandomFulcrumPoint
     end
 
     def always_create_record
-      Fastenv.fulcrum_always_create_record
-    rescue
-      'false'
+      Fastenv.fulcrum_always_create_record { 'false' }
     end
 
     def fulcrum_api_url
-      Fastenv.fulcrum_api_url
-    rescue
-      'https://api.fulcrumapp.com'
+      Fastenv.fulcrum_api_url { 'https://api.fulcrumapp.com' }
     end
 
     def bbox
-      Fastenv.bbox
-    rescue
-      '40.636883,-74.083214,40.831476,-73.673630'
+      Fastenv.bbox { '40.636883,-74.083214,40.831476,-73.673630' }
     end
 
     def sw_point
